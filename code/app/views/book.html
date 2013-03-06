@@ -1,6 +1,16 @@
-<p>This is the book view.</p>
-
-{{book.title}} by {{book.author}} <img src="{{book.image}}" height="200", width="100"></img>
+<div class="row">
+    <div class="span5">
+      {{book.title}} 
+    </div>
+    <div class="span4">
+      by {{book.author}}
+    </div>
+</div>
+<div class="row">
+    <div class="span3 offset3">
+      <img src="{{book.image}}" height="400", width="200"></img>
+    </div>
+</div>
 
 <a href="/">Back</a>
 

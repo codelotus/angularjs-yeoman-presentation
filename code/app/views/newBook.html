@@ -1,0 +1,20 @@
+<a href="#/" ng-click="newBookForm">Back</a>
+
+<form name="newBookForm">
+  Author: <input name="author" ng-model="author" required>
+  <span class="error" ng-show="newBookForm.author.$error.required">Required!</span><br>
+  Title: <input name="title" ng-model="title" required>
+  <span class="error" ng-show="newBookForm.title.$error.required">Required!</span><br>
+  Image: <input name="image" ng-model="image" required>
+  <span class="error" ng-show="newBookForm.image.$error.required">Required!</span><br>
+
+  <tt>author = {{author}}</tt><br>
+  <tt>newBookForm.author.$valid =
+    {{newBookForm.author.$valid}}</tt><br>
+  <tt>newBookForm.author.$error =
+    {{newBookForm.author.$error}}</tt><br>
+  <tt>newBookForm.$valid =
+    {{newBookForm.$valid}}</tt><br>
+  <tt>newBookForm.$error.required =
+    {{!!newBookForm.$error.required}}</tt><br>
+</form>

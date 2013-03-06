@@ -1,0 +1,8 @@
+<a href="#/newBook" ng-click="newBookForm">New Book</a>
+
+<ul>
+    <li ng-repeat="book in books">
+    <a href="#/book/{{book.id}}">{{book.title}}</a> by {{book.author}} <img src="{{book.image}}" height="200" width="100"></img>
+    </li>
+</ul>
+

@@ -12,8 +12,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
 
@@ -261,6 +260,130 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
 
                 <section>
                     Code...
+                </section>
+
+                <section>
+                    <h2>
+                    Making Big Applications...
+                    </h2>
+                    <p>
+                    What follows is taken from:<br/>
+                    <a href="http://briantford.com/blog/huuuuuge-angular-apps.html">briantford.com/blog/huuuuuge-angular-apps.html</a><br/>
+                    By Brian Ford:<br/>
+                    AngularJS Team Developer<br/>
+                    <p>
+                </section>
+
+                <section>
+                    <h2>Folder Structure</h2>
+                    <pre>
+                    <code style="max-height:625px;">
+                   root-app-folder
+                   ├── index.html
+                   ├── scripts
+                   │&nbsp;&nbsp; ├── controllers
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── main.js
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── ...
+                   │&nbsp;&nbsp; ├── directives
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── myDirective.js
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── ...
+                   │&nbsp;&nbsp; ├── filters
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── myFilter.js
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── ...
+                   │&nbsp;&nbsp; ├── services
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── myService.js
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── ...
+                   │&nbsp;&nbsp; ├── vendor
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; ├── angular.js
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; ├── angular.min.js
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; ├── es5-shim.min.js
+                   │&nbsp;&nbsp; │&nbsp;&nbsp; └── json3.min.js
+                   │&nbsp;&nbsp; └── app.js
+                   ├── styles
+                   │&nbsp;&nbsp; └── ...
+                   └── views
+                       ├── main.html
+                           └── ...
+                    </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Modules</h2>
+                    <p>
+                    Should all be configured in app.js
+                    <pre>
+                    <code>
+            var app = angular.module('yourAppName', ['yourAppDep']);
+            angular.module('yourAppDep');
+                    </code>
+                    </pre>
+                    </p>
+                    <p>
+                    Define Controllers on modules
+                    <pre>
+                    <code>
+            app.controller("MyCtrl", function() {});
+                    </code>
+                    </pre>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Directives</h2>
+                    <p>
+                      Use an app specific prefix
+                      <pre>
+                      <code>
+            angular.module('yourAppDep')
+                .directive('yourAppControlPanel', function () {
+                  // ...
+                });
+                      </code>
+                      </pre>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Side note on $digest</h2>
+                    <img src="images/angular-runtime.png"></img>
+                </section>
+
+                <section>
+                    <h2>Filters</h2>
+                    <ul>
+                        <li>Called twice for each digest cycle</li>
+                        <li>
+                          If data will not be modified by the filter, call the filter in the controller<br/>
+                          <pre>
+                          <code>
+            {{myData.author | myFilter}}
+                          </code>
+                          </pre>
+                          <pre>
+                          <code>
+            myApp.controller('MyCtrl', function($scop, $filter){
+              $scope.myData = { title: "ABC", author: "xyz" }
+              $scope.myData.author = $filter('myFilter')($scope.myData.author)
+            });
+                          </code>
+                          </pre>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Use Yeoman...</h2>
+                </section>
+
+                <section>
+                    <h2>Additional Info</h2>
+                    <ul>
+                        <li><a href="http://yeoman.io">yeoman.io</a></li>
+                        <li><a href="https://github.com/angular/angularjs-batarang">AngularJS Batarang</a></li>
+                        <li><a href="http://egghead.io">egghead.io</a></li>
+                        <li><a href="http://ngmodules.org">ngmodules.org</a></li>
+                    </ul>
                 </section>
 
 			</div>

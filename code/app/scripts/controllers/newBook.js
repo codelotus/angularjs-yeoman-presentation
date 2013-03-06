@@ -5,4 +5,7 @@ codeApp.controller('NewBookCtrl', function($scope) {
   $scope.author = "";
   $scope.image = "";
 
+  $scope.submitNewBook = function() {
+      alert("Title: " + $scope.title);
+  }
 });

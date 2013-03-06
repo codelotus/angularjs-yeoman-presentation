@@ -1,6 +1,6 @@
 <a href="#/" ng-click="newBookForm">Back</a>
 
-<form name="newBookForm">
+<form name="newBookForm" ng-submit="submitNewBook()">
   Author: <input name="author" ng-model="author" required>
   <span class="error" ng-show="newBookForm.author.$error.required">Required!</span><br>
   Title: <input name="title" ng-model="title" required>
@@ -17,4 +17,6 @@
     {{newBookForm.$valid}}</tt><br>
   <tt>newBookForm.$error.required =
     {{!!newBookForm.$error.required}}</tt><br>
+
+  <input type="submit" value="Submit">
 </form>

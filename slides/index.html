@@ -72,6 +72,21 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
 
                 <section>
                     <h2>Modules</h2>
+                    <pre>
+                    <code>
+  var angularLocalStorage = angular.module('LocalStorageModule', []);
+  angularLocalStorage.service('localStorageService', [
+    '$rootScope', 
+    'prefix', 
+    'cookie',
+    function($rootScope, prefix, cookie) {
+      return ...
+    }]);
+                    </code>
+                    </pre>
+                    <p>
+                    https://github.com/grevory/angular-local-storage
+                    </p>
 
                 </section>
 
@@ -79,10 +94,10 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <h2>Routes</h2>
 					<pre>
                     <code>
-                    $routeProvider.when('/books', {
-                        templateUrl: 'books.html',
-                        controller: 'BooksCtrl'
-                    });
+              $routeProvider.when('/books', {
+                  templateUrl: 'books.html',
+                  controller: 'BooksCtrl'
+              });
 					</code>
                     </pre>
 				</section>
@@ -91,16 +106,16 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <h2>Controller</h2>
                     <pre>
                     <code>
-                    function BooksCtrl($scope) {
-                      $scope.books = [
-                        { title: 'The Law',
-                          author:'Frederik Bastiat'},
-                        { title: 'Two Treatises of Government',
-                          author:'John Locke'},
-                        { title: 'The Communist Manifesto',
-                          author:'Karl Marx and Friedrich Engels'}
-                      ]
-                    }
+             function BooksCtrl($scope) {
+               $scope.books = [
+                 { title: 'The Law',
+                   author:'Frederik Bastiat'},
+                 { title: 'Two Treatises of Government',
+                   author:'John Locke'},
+                 { title: 'The Communist Manifesto',
+                   author:'Karl Marx and Friedrich Engels'}
+               ]
+             }
                     </code>
                     </pre>
                 </section>
@@ -109,11 +124,11 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <h2>Views</h2>
                     <pre>
                     <code>
-                    &lt;ul&gt;
-                      &lt;li ng-repeat="book in books"&gt;
-                          {{book.title}} written by {{book.author}}.
-                      &lt;/li&gt;
-                    &lt;/ul&gt;
+            &lt;ul&gt;
+              &lt;li ng-repeat="book in books"&gt;
+                  {{book.title}} written by {{book.author}}.
+              &lt;/li&gt;
+            &lt;/ul&gt;
                     </code>
                     </pre>
                 </section>
@@ -122,22 +137,22 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <h2>Data Binding</h2>
                     <pre>
                     <code>
-                    function BooksCtrl($scope) {
-                      $scope.books = [
-                        { title: 'The Law',
-                          author:'Frederik Bastiat'},
-                        { title: 'Two Treatises of Government',
-                          author:'John Locke'},
-                        { title: 'The Communist Manifesto',
-                          author:'Karl Marx and Friedrich Engels'}
-                      ]
-                    }
+            function BooksCtrl($scope) {
+              $scope.books = [
+                { title: 'The Law',
+                  author:'Frederik Bastiat'},
+                { title: 'Two Treatises of Government',
+                  author:'John Locke'},
+                { title: 'The Communist Manifesto',
+                  author:'Karl Marx and Friedrich Engels'}
+              ]
+            }
 
-                    &lt;ul&gt;
-                      &lt;li ng-repeat="book in books"&gt;
-                          {{book.title}} written by {{book.author}}.
-                      &lt;/li&gt;
-                    &lt;/ul&gt;
+            &lt;ul&gt;
+              &lt;li ng-repeat="book in books"&gt;
+                  {{book.title}} written by {{book.author}}.
+              &lt;/li&gt;
+            &lt;/ul&gt;
                     </code>
                     </pre>
                 </section>
@@ -146,16 +161,16 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <h2>Dependency Injection</h2>
                     <pre>
                     <code>
-                    function BooksCtrl($scope) {
-                      $scope.books = [
-                        { title: 'The Law',
-                          author:'Frederik Bastiat'},
-                        { title: 'Two Treatises of Government',
-                          author:'John Locke'},
-                        { title: 'The Communist Manifesto',
-                          author:'Karl Marx and Friedrich Engels'}
-                      ]
-                    }
+            function BooksCtrl($scope) {
+              $scope.books = [
+                { title: 'The Law',
+                  author:'Frederik Bastiat'},
+                { title: 'Two Treatises of Government',
+                  author:'John Locke'},
+                { title: 'The Communist Manifesto',
+                  author:'Karl Marx and Friedrich Engels'}
+              ]
+            }
                     </code>
                     </pre>
                 </section>
@@ -164,9 +179,9 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <h2>Directives</h2>
                     <pre>
                     <code>
-                      &lt;li ng-repeat="book in books"&gt;
-                          {{book.title}} written by {{book.author}}.
-                      &lt;/li&gt;
+            &lt;li ng-repeat="book in books"&gt;
+                {{book.title}} written by {{book.author}}.
+            &lt;/li&gt;
                     </code>
                     </pre>
                 </section>
@@ -174,17 +189,17 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                 <section>
                     <pre>
                     <code>
-                    var app = angular.module("something", []);
-                    app.directive("other", function() {
-                      return {
-                        restrict: "E",
-                        template: "&lt;div&gt;Hello World!!!&lt;/div&gt;"
-                      }
-                    });
+            var app = angular.module("something", []);
+            app.directive("other", function() {
+              return {
+                restrict: "E",
+                template: "&lt;div&gt;Hello World!!!&lt;/div&gt;"
+              }
+            });
 
-                    &lt;div ng-app="something"&gt;
-                      &lt;other&gt;&lt;/other&gt;
-                    &lt;div&gt;
+            &lt;div ng-app="something"&gt;
+              &lt;other&gt;&lt;/other&gt;
+            &lt;div&gt;
                     </code>
                     </pre>
                 </section>
@@ -192,26 +207,21 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                 <section>
                     <pre>
                     <code>
-                    var app = angular.module("something", []);
-                    app.directive("other", function() {
-                      return {
-                        restrict: "A",
-                        link: function() {
-                          alert("Hello World")
-                        }
-                      }
-                    });
+            var app = angular.module("something", []);
+            app.directive("other", function() {
+              return {
+                restrict: "A",
+                link: function() {
+                  alert("Hello World")
+                }
+              }
+            });
 
-                    &lt;div ng-app="something"&gt;
-                      &lt;div other&gt;&lt;/div&gt;
-                    &lt;div&gt;
-
+            &lt;div ng-app="something"&gt;
+              &lt;div other&gt;&lt;/div&gt;
+            &lt;div&gt;
                     </code>
                     </pre>
-                </section>
-
-                <section>
-                    <h2>How does this work together</h2>
                 </section>
 
 
@@ -221,7 +231,36 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
 
                 <section>
                     <p>
-                                        </p>
+                    Yeoman is more than just a tool. It's a workflow; a collection of tools and best practices working in harmony to make developing for the web even better.
+                    </p>
+                </section>
+
+                <section>
+                    <pre>
+                    <code>
+                        $ mkdir myApp
+                        $ cd MyApp
+                        $ yeoman init
+                        $ yeoman server
+                          -- hack, hack, hack --
+                        $ yeoman test
+                        $ yeoman build
+                    </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>And with Angular...</h2> 
+                    <pre>
+                    <code>
+                  $ yeoman init angular
+                  $ yeoman init angular:controller MyCtrl
+                    </code>
+                    </pre>
+                </section>
+
+                <section>
+                    Code...
                 </section>
 
 				<section>

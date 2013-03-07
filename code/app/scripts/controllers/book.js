@@ -1,6 +1,6 @@
 'use strict';
 
-codeApp.controller('BookCtrl', function($scope, $http, $routeParams, localStorageService, $log) {
+codeApp.controller('BookCtrl', function($scope, $routeParams, localStorageService, $log) {
 
 
   var bookId = $routeParams.bookId;

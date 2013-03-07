@@ -223,7 +223,6 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     </pre>
                 </section>
 
-
                 <section>
                     <h1>Yeoman</h1>
                 </section>
@@ -260,6 +259,34 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
 
                 <section>
                     Code...
+                </section>
+
+                <section>
+                    <h1>Tips</h1>
+                </section>
+
+                <section>
+                    <h2>Scope</h2>
+                    Browser vs Angular
+                </section>
+
+                <section>
+                    Does not work...
+                    <pre>
+                    <code>
+             function BooksCtrl($scope) {
+               $.get('/ajax/data.json', function(data) {
+                 $scope.data = data;
+               }
+             });
+                    </code>
+                    </pre>
+                </section>
+
+                <section>
+                    Use AngularUI and UI Bootstrap components
+                    <img src="images/angular-ui.png"></img>
+                    <a href="http://angular-ui.github.com">angular-ui.github.com</a>
                 </section>
 
                 <section>
@@ -311,19 +338,19 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                 <section>
                     <h2>Modules</h2>
                     <p>
-                    Should all be configured in app.js
+                    Define controllers, directives, etc on modules
                     <pre>
                     <code>
+            // app.js
             var app = angular.module('yourAppName', ['yourAppDep']);
-            angular.module('yourAppDep');
-                    </code>
-                    </pre>
-                    </p>
-                    <p>
-                    Define Controllers on modules
-                    <pre>
-                    <code>
+
+            // controllers/MyCtrl.js
             app.controller("MyCtrl", function() {});
+            
+            // directives/appDataPanel.js
+            app.directive('appDataPanel', function() {
+              ...
+            });
                     </code>
                     </pre>
                     </p>
@@ -362,10 +389,10 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                           </pre>
                           <pre>
                           <code>
-            myApp.controller('MyCtrl', function($scop, $filter){
-              $scope.myData = { title: "ABC", author: "xyz" }
-              $scope.myData.author = $filter('myFilter')($scope.myData.author)
-            });
+myApp.controller('MyCtrl', function($scop, $filter){
+  $scope.myData = { title: "ABC", author: "xyz" };
+  $scope.myData.author = $filter('myFilter')($scope.myData.author);
+});
                           </code>
                           </pre>
                         </li>
@@ -379,6 +406,7 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                 <section>
                     <h2>Additional Info</h2>
                     <ul>
+                        <li><a href="http://angularjs.org">angularjs.org</a></li>
                         <li><a href="http://yeoman.io">yeoman.io</a></li>
                         <li><a href="https://github.com/angular/angularjs-batarang">AngularJS Batarang</a></li>
                         <li><a href="http://egghead.io">egghead.io</a></li>

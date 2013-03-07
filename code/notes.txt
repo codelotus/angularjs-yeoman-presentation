@@ -1,0 +1,143 @@
+/***************************
+ * app.js                  *
+ ***************************/
+var codeApp = angular.module('codeApp', ['LocalStorageModule'])
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+      .when('/book/:bookId', {
+        templateUrl: 'views/book.html',
+        controller: 'BookCtrl'
+      })
+      .when('/', {
+        templateUrl: 'views/books.html',
+        controller: 'BooksCtrl'
+      })
+      .when('/newBook', {
+        templateUrl: 'views/newBook.html',
+        controller: 'NewBookCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+  }]);
+
+
+
+
+/*********************
+ * BooksCtrl         *
+ *********************/
+codeApp.controller('BooksCtrl', function($scope, $http, localStorageService) {
+
+  $http({method: 'GET', url:'scripts/data/model.json'}).
+    success(function(data, status, headers, config){
+      $scope.books = data;
+      _.each(data, function(item){
+        localStorageService.add(item.id, JSON.stringify(item));
+      });
+    }).
+    error(function(data, status, headers, config){
+      $scope.awesomeThings = [ 'fail' ];
+    });
+
+});
+
+/******************************
+ * books.html                 *
+ ******************************/
+<span>
+    <a href="#/newBook" ng-click="newBookForm">New Book</a> | Filter <input ng-model="filterText">
+</span>
+
+<ul>
+    <li class="row" ng-repeat="book in books | filter:filterText | orderBy: 'title'">
+    <div class="span3">
+      <a href="#/book/{{book.id}}">{{book.title}}</a>
+    </div>
+    <div class="span3">
+      by {{book.author}}
+    </div>
+    <div class="span3">
+      <img src="{{book.image}}" height="200" width="100"></img>
+    </div>
+    </li>
+</ul>
+
+
+
+
+/***********************
+ * BookCtrl            *
+ ***********************/
+codeApp.controller('BookCtrl', function($scope, $http, $routeParams, localStorageService, $log) {
+
+
+  var bookId = $routeParams.bookId;
+  var bookJson = localStorageService.get(bookId);
+  $scope.book = JSON.parse(bookJson);
+  $log.log("Book: " + JSON.stringify($scope.book));
+
+});
+
+
+/****************************
+ *   book.html              *
+ ****************************/
+<div class="row">
+    <div class="span5">
+      {{book.title}} 
+    </div>
+    <div class="span4">
+      by {{book.author}}
+    </div>
+</div>
+<div class="row">
+    <div class="span3 offset3">
+      <img src="{{book.image}}" height="400", width="200"></img>
+    </div>
+</div>
+
+<a href="/">Back</a>
+
+
+
+
+/**********************
+ * NewBookCtrl        *
+ **********************/
+codeApp.controller('NewBookCtrl', function($scope) {
+  $scope.title = "";
+  $scope.author = "";
+  $scope.image = "";
+
+  $scope.submitNewBook = function() {
+      alert("Title: " + $scope.title);
+  }
+});
+
+
+/***********************
+ * newBook.html        *
+ ***********************/
+<a href="#/" ng-click="newBookForm">Back</a>
+
+<form name="newBookForm" ng-submit="submitNewBook()">
+  Author: <input name="author" ng-model="author" required>
+  <span class="error" ng-show="newBookForm.author.$error.required">Required!</span><br>
+  Title: <input name="title" ng-model="title" required>
+  <span class="error" ng-show="newBookForm.title.$error.required">Required!</span><br>
+  Image: <input name="image" ng-model="image" required>
+  <span class="error" ng-show="newBookForm.image.$error.required">Required!</span><br>
+
+  <tt>author = {{author}}</tt><br>
+  <tt>newBookForm.author.$valid =
+    {{newBookForm.author.$valid}}</tt><br>
+  <tt>newBookForm.author.$error =
+    {{newBookForm.author.$error}}</tt><br>
+  <tt>newBookForm.$valid =
+    {{newBookForm.$valid}}</tt><br>
+  <tt>newBookForm.$error.required =
+    {{!!newBookForm.$error.required}}</tt><br>
+
+  <input type="submit" value="Submit">
+</form>

@@ -160,7 +160,7 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <h2>Dependency Injection</h2>
                     <pre>
                     <code>
-            function BooksCtrl($scope) {
+            function BooksCtrl($scope, $log) {
               $scope.books = [
                 { title: 'The Law',
                   author:'Frederik Bastiat'},
@@ -169,6 +169,8 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                 { title: 'The Communist Manifesto',
                   author:'Karl Marx and Friedrich Engels'}
               ]
+              
+              $log.info("Books Loaded...")
             }
                     </code>
                     </pre>
@@ -188,7 +190,8 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                 <section>
                     <pre>
                     <code>
-            var app = angular.module("something", []);
+            var app = angular.module("app", []);
+
             app.directive("other", function() {
               return {
                 restrict: "E",
@@ -206,7 +209,8 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                 <section>
                     <pre>
                     <code>
-            var app = angular.module("something", []);
+            var app = angular.module("app", []);
+
             app.directive("other", function() {
               return {
                 restrict: "A",
@@ -228,12 +232,6 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                 </section>
 
                 <section>
-                    <p>
-                    Yeoman is more than just a tool. It's a workflow; a collection of tools and best practices working in harmony to make developing for the web even better.
-                    </p>
-                </section>
-
-                <section>
                     <pre>
                     <code>
                         $ mkdir myApp
@@ -252,7 +250,7 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <pre>
                     <code>
                   $ yeoman init angular
-                  $ yeoman init angular:controller MyCtrl
+                  $ yeoman init angular:route book
                     </code>
                     </pre>
                 </section>
@@ -282,6 +280,49 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     </code>
                     </pre>
                 </section>
+
+
+                <section>
+                    <h2>Scope</h2>
+                    <p>
+                     $rootScope  vs  $scope
+                    </p>
+                </section>
+
+
+                <section>
+                    <p>
+                    Binding on index.html
+                    </p>
+                    <pre>
+                    <code>
+                    &lt;div ng-bind="author"&gt;&lt;/div&gt;
+                                  VS
+                       &lt;div&gt;{{author}}&lt;/div&gt;
+                    </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Minification</h2>
+                    <p>
+                      Angular uses reflection
+					<pre>
+                    <code>
+            $routeProvider.when('/books', {
+                templateUrl: 'books.html',
+                controller: 'BooksCtrl'
+            });
+
+            function BooksCtrl($scope) {...}
+					</code>
+                    </pre>
+                    </p>
+                    <p>
+            So disable property renaming
+                    </p>
+                </section>
+
 
                 <section>
                     Use AngularUI and UI Bootstrap components
@@ -381,7 +422,7 @@ Yeoman is a robust and opinionated client-side stack, comprising tools and frame
                     <ul>
                         <li>Called twice for each digest cycle</li>
                         <li>
-                          If data will not be modified by the filter, call the filter in the controller<br/>
+                          If data will not be modified after it is filtered, call the filter in the controller<br/>
                           <pre>
                           <code>
             {{myData.author | myFilter}}
